@@ -1,11 +1,13 @@
-FROM rocker/r-ver:latest
+FROM rocker/r-base:latest
 
 RUN apt-get update \
- && apt-get install -y --no-install-recommends \
- && apt-get install -y libcurl4-openssl-dev zlib1g-dev libssl-dev \
-                       libssh2-1-dev git \
- && install2.r remotes styler \
- && installGithub.r rundel/ghclass \
+ && apt-get install -y libgit2-dev libcurl4-openssl-dev zlib1g-dev \
+                       libssl-dev libssh2-1-dev git \
+ && install2.r remotes styler gh usethis withr fs knitr \
+               purrr yaml base64enc tibble glue processx \
+               crayon readr tidyr rlang lubridate \
+ && installGithub.r rundel/gert@mirror \
+ && installGithub.r rundel/ghclass@use_gert \
  && rm -rf /tmp/* \
  && apt-get remove --purge -y $BUILDDEPS \
  && apt-get autoremove -y \

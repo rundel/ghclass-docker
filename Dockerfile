@@ -5,9 +5,8 @@ RUN apt-get update \
                        libssl-dev libssh2-1-dev git \
  && install2.r remotes styler gh usethis withr fs knitr \
                purrr yaml base64enc tibble glue processx \
-               crayon readr tidyr rlang lubridate \
- && installGithub.r rundel/gert@mirror \
- && installGithub.r rundel/ghclass@use_gert \
+               crayon readr tidyr rlang lubridate gert \
+ && installGithub.r rundel/ghclass \
  && rm -rf /tmp/* \
  && apt-get remove --purge -y $BUILDDEPS \
  && apt-get autoremove -y \
